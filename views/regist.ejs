@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="stylesheets/style.css"/>
+    <!--<link rel="stylesheet" href="stylesheets/login.css"/>-->
+</head>
+<body>
+<form action="/users/regist" method="post" id="reg-form" class="form">
+    <h1>
+        注册:
+    </h1>
+    <p>
+        <label for="">用户名: </label>
+        <input id="username" type="text" name="username" required/>
+    </p>
+    <p>
+        <label for="">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+        <input id="password" type="text" name="password" required/>
+    </p>
+    <p>
+        <label for="" required>性&nbsp;&nbsp;&nbsp;&nbsp;别: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="sex" type="radio" value="男" name="sex" />男
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="sex" type="radio" value="女" name="sex"/>女
+    </p>
+    <p>
+        <input id="btn" type="submit" value="注册"/>
+    </p>
+</form>
+<script src="/javascripts/jquery.js"></script>
+<script>
+    $(function(){
+//        $('#btn').on('click',function(){
+//            if($('#username').vale == "" || $('#password').vale == "" || $('.sex').name == ''){
+//                alert('请补全信息!');
+//            }
+//        });
+        $('#username').on('blur',function(){
+            var that = this;
+            if($.trim(this.value) == ''){
+                $(this).css("background-color","#D6D6FF");
+                alert('请输入用户名!');
+            }else{
+                $.get('/users/checkUser',{username:this.value},function(data){
+                    if(data == 'fail'){
+                        $(that).after('<span class="error" >用户名重复</span>');
+                        $(that).css("background-color","#D6D6FF");
+                    }else{
+                        $(that).css("background-color","#fff");
+                    }
+                });
+            }
+        }).on('focus',function(){
+            $(".error").remove();
+        });
+    });
+</script>
+</body>
+</html>
