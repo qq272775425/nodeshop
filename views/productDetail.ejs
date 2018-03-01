@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>蛋糕1-商品详情</title>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <link rel="stylesheet" href="/stylesheets/productDetail.css"/>
+</head>
+<body>
+<div id="header">
+    <div class="warp">
+        <div class="link">
+            <a href="/login">登录</a>
+            &nbsp; &nbsp; &nbsp;
+            <a href="/reg">注册</a>
+        </div>
+    </div>
+</div>
+<ul id="nav">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">所有商品</a></li>
+    <li><a href="#">我的定单</a></li>
+    <li><a href="#">我的购物车</a></li>
+</ul>
+<div id="content" >
+    <div id="product-info" class="clearfix">
+        <div id="product-imgs">
+            <div class="big-img">
+                <img src="/uploads/1.jpg" alt=""/>
+            </div>
+            <ul class="img-list" >
+                <li class="selected"><img src="/uploads/1.jpg" alt=""/></li>
+                <li><img src="/uploads/2.jpg" alt=""/></li>
+                <li><img src="/uploads/3.jpg" alt=""/></li>
+            </ul>
+        </div>
+        <div id="product-basic">
+            <form id="product-form" action="/products/buy" method="post">
+                <input  type="hidden" name="product-size" id="product-size"/>
+                <h1 class="form-item product-name">蛋糕</h1>
+                <p class="form-item product-price">100-150</p>
+                <div class="form-item product-size" style="height: 30px;">
+                    <span style="float:left;">大小:&nbsp;&nbsp;</span>
+                    <ul class="product-size-list">
+                        <li data-price="100">4</li>
+                        <li data-price="150">6</li>
+                    </ul>
+                </div>
+                <div class="form-item product-num clearfix" >
+                    <span style="float:left;">数量: &nbsp;&nbsp;&nbsp;</span>
+                    <div class="num-input">
+                        <span class="num-minus">-</span>
+                        <input type="text" class="num-value"/>
+                        <span class="num-add">+</span>
+                    </div>
+
+                </div>
+                <div class="form-item btns">
+                    <input type="submit" value="立即购买"/>
+                    <input type="button" value="加入购物车"/>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div id="product-detail"></div>
+</div>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/productDetail.js"></script>
+</body>
+</html>
