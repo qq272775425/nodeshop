@@ -1,0 +1,23 @@
+#content .col{
+    width: 30%;
+    float: left;
+    margin-right: 3%;
+}
+#content  li{
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+#content li img{
+    width: 100%;
+}
+#content li p{
+    height: 30px;
+    line-height: 30px;
+}
+#content li .price{
+    float: right;margin-right: 20px;
+}
+#content li .title{
+    margin-left: 20px;
+}

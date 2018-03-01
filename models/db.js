@@ -15,8 +15,12 @@ exports.query = function(sql,data,callback){
                 callback = data;
                 data = null;
             }
+            console.log(data);
             conn.query(sql,data,function(qerr,result){
+                //释放链接
                 conn.release();
+                //事件驱动回调
+                console.log(result);
                 callback(result);
             });
         }
