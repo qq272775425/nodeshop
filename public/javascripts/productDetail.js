@@ -11,4 +11,9 @@ $(function(){
     $('#product-form .product-size-list li').on('click',function(){
         $productPrice.html($(this).data('price'));
     });
+    $('#product-num').num({
+        min:1,
+        max:20,
+        isEdit:false
+    });
 });

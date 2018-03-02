@@ -6,5 +6,9 @@ exports.list = function(req,res){
     });
 };
 exports.detail = function(req,res){
-    res.render('productDetail');
+    var productId = req.query.productId;
+    productModel.getById(productId,function(rs){
+        res.render('productDetail');
+    });
+
 };
