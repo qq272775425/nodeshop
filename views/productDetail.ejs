@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>蛋糕1-商品详情</title>
+    <title><%= product.prod_name%>-商品详情</title>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
     <link rel="stylesheet" href="/stylesheets/productDetail.css"/>
 </head>
@@ -25,25 +25,53 @@
 <div id="content" >
     <div id="product-info" class="clearfix">
         <div id="product-imgs">
+
+            <% var imgs = product.productImg; %>
             <div class="big-img">
-                <img src="/uploads/1.jpg" alt=""/>
+                <img src="/<%=imgs[0].img_src%>" alt=""/>
             </div>
             <ul class="img-list" >
-                <li class="selected"><img src="/uploads/1.jpg" alt=""/></li>
-                <li><img src="/uploads/2.jpg" alt=""/></li>
-                <li><img src="/uploads/3.jpg" alt=""/></li>
+                <!--<li class="selected"><img src="/uploads/1.jpg" alt=""/></li>-->
+                <!--<li><img src="/uploads/2.jpg" alt=""/></li>-->
+                <!--<li><img src="/uploads/3.jpg" alt=""/></li>-->
+
+                <%
+
+                    for(var i=0;i<imgs.length;i++){
+                        %>
+                <li <%= i==0?'class=selected':''%>><img src="/<%=imgs[i].img_src%>" alt=""/></li>
+                <%
+                    }
+                  %>
             </ul>
         </div>
         <div id="product-basic">
             <form id="product-form" action="/products/buy" method="post">
                 <input  type="hidden" name="product-size" id="product-size"/>
-                <h1 class="form-item product-name">蛋糕</h1>
-                <p class="form-item product-price">100-150</p>
+                <h1 class="form-item product-name"><%= product.prod_name%></h1>
+                <p class="form-item product-price">
+                    <%
+                        var size = product.productSize;
+                        size.sort(function(a,b){
+                        return a.size_price- b.size_price;
+                    });
+
+//                     for(var i=0;i<product.productSize.length;i++){
+//                         var size = product.productSize[i];
+                     %>
+                        <%=size[0].size_price%> -  <%=size[size.length-1].size_price%>
+
+                </p>
                 <div class="form-item product-size" style="height: 30px;">
                     <span style="float:left;">大小:&nbsp;&nbsp;</span>
                     <ul class="product-size-list">
-                        <li data-price="100">4</li>
-                        <li data-price="150">6</li>
+                        <%
+                            for(var i=0;i<size.length;i++){
+                        %>
+                                <li data-price="<%=size[i].size_price%>"><%=size[i].size_numb%></li>
+                        <%
+                            }
+                        %>
                     </ul>
                 </div>
                 <div class="form-item product-num clearfix" >

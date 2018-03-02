@@ -8,7 +8,10 @@ exports.list = function(req,res){
 exports.detail = function(req,res){
     var productId = req.query.productId;
     productModel.getById(productId,function(rs){
-        res.render('productDetail');
-    });
-
-};
+//        res.render('productDetail');
+//        productModel.getProductImg(productId,function(rs1){
+//            rs[0].productImg = rs1;
+//            res.send(rs1);
+            res.render('productDetail',{product: rs[0]});
+        });
+    };
